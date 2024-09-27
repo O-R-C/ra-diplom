@@ -12,7 +12,7 @@ import HomeSearchForm from './HomeSearchForm'
 
 export default function HomeHeader() {
   return (
-    <Header className='container'>
+    <Header>
       <Row>
         <Col>
           <NavBar className='navbar navbar-expand-sm navbar-light bg-light'>
