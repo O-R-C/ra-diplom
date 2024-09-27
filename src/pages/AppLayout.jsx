@@ -1,9 +1,9 @@
-import Header from '../ui/Header'
+import HomeHeader from '../features/home/HomeHeader'
 
 export default function AppLayout() {
   return (
     <>
-      <Header />
+      <HomeHeader />
     </>
   )
 }
