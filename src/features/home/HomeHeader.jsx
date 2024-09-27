@@ -4,7 +4,11 @@ import Header from '../../ui/Header'
 import NavBar from '../../ui/NavBar'
 import BrandLogo from './BrandLogo'
 import NavList from '../../ui/NavList'
+import NavBarMain from '../../ui/NavBarMain'
+import Wrapper from '../../ui/Wrapper'
 import { navLinks as navLinksData } from '../../data/navLinks'
+import HomeCartIcon from './HomeCartIcon'
+import HomeSearchForm from './HomeSearchForm'
 
 export default function HomeHeader() {
   return (
@@ -13,38 +17,16 @@ export default function HomeHeader() {
         <Col>
           <NavBar className='navbar navbar-expand-sm navbar-light bg-light'>
             <BrandLogo />
-            <div
-              className='collapse navbar-collapse'
-              id='navbarMain'
-            >
+            <NavBarMain className='collapse navbar-collapse'>
               <NavList
                 className='navbar-nav mr-auto'
                 items={navLinksData}
               />
-              <div>
-                <div className='header-controls-pics'>
-                  <div
-                    data-id='search-expander'
-                    className='header-controls-pic header-controls-search'
-                  ></div>
-                  {/* Do programmatic navigation on click to /cart.html */}
-                  <div className='header-controls-pic header-controls-cart'>
-                    <div className='header-controls-cart-full'>1</div>
-                    <div className='header-controls-cart-menu'></div>
-                  </div>
-                </div>
-                <form
-                  data-id='search-form'
-                  className='header-controls-search-form form-inline invisible'
-                >
-                  <input
-                    className='form-control'
-                    placeholder='Поиск'
-                    type='search'
-                  />
-                </form>
-              </div>
-            </div>
+              <Wrapper className='header-controls-pics'>
+                <HomeSearchForm />
+                <HomeCartIcon className='header-controls-pic header-controls-cart' />
+              </Wrapper>
+            </NavBarMain>
           </NavBar>
         </Col>
       </Row>
