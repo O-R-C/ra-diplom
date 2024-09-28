@@ -6,19 +6,21 @@ export default function FooterColInfo() {
   return (
     <Section title='Информация'>
       <ul className='nav flex-column'>
-        {navLinks?.map((item) => (
-          <li
-            key={item.to}
-            className='nav-item'
-          >
-            <Link
-              to={item.to}
-              className='nav-link'
+        {navLinks
+          ?.filter((_, i) => i !== 0)
+          .map((item) => (
+            <li
+              key={item.to}
+              className='nav-item'
             >
-              {item.title}
-            </Link>
-          </li>
-        ))}
+              <Link
+                to={item.to}
+                className='nav-link'
+              >
+                {item.title}
+              </Link>
+            </li>
+          ))}
       </ul>
     </Section>
   )
