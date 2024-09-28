@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
-import Section from '../../ui/Section'
 import { useEffect } from 'react'
+
+import Card from './Card'
+import Row from '../../ui/Row'
+import Section from '../../ui/Section'
+import PreLoader from '../../ui/PreLoader'
 import { fetchTopSales } from './topSalesSlice'
 
 export default function TopSales() {
@@ -12,10 +16,25 @@ export default function TopSales() {
     dispatch(fetchTopSales())
   }, [dispatch])
 
+  if (error) return <p>{error}</p>
+
+  if (isLoading) return <PreLoader />
+
+  if (!topSales) return null
+
   return (
     <Section
       title='Хиты продаж!'
       type='h2'
-    ></Section>
+    >
+      <Row>
+        {topSales.map((item) => (
+          <Card
+            key={item.id}
+            item={item}
+          />
+        ))}
+      </Row>
+    </Section>
   )
 }
