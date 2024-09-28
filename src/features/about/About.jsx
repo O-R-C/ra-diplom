@@ -4,8 +4,11 @@ import Section from '../../ui/Section'
 export default function About() {
   return (
     <Col>
-      <Section className={'top-sales'}>
-        <h2 className='text-center'>О магазине</h2>
+      <Section
+        className={'top-sales'}
+        title={'О магазине'}
+        type={'h2'}
+      >
         <p>
           В Интернете можно встретить немало магазинов, предлагающих аксессуары. Но именно к нам хочется возвращаться
           снова и снова.
