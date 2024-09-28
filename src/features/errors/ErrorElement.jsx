@@ -1,4 +1,4 @@
-import { useRouteError } from 'react-router-dom'
+import { Link, useRouteError } from 'react-router-dom'
 
 export default function ErrorElement() {
   const error = useRouteError()
@@ -12,6 +12,15 @@ export default function ErrorElement() {
       <p>Sorry, an unexpected error has occurred.</p>
       <p>
         <i>{error.statusText || error.message}</i>
+      </p>
+
+      <p>
+        <Link
+          to='/'
+          className='nav-link active'
+        >
+          Back to home
+        </Link>
       </p>
     </div>
   )
