@@ -4,8 +4,10 @@ import Section from '../../ui/Section'
 export default function Contacts() {
   return (
     <Col>
-      <Section>
-        <h2 className='text-center'>Контакты</h2>
+      <Section
+        title='Контакты'
+        type={'h2'}
+      >
         <p>Наш головной офис расположен в г.Москва, по адресу: Варшавское шоссе, д. 17, бизнес-центр W Plaza.</p>
         <h5 className='text-center'>Координаты для связи:</h5>
         <p>
