@@ -6,20 +6,16 @@ export default function HomeSearchForm() {
   const [isHidden, setIsHidden] = useState(true)
   const [searchValue, setSearchValue] = useState('')
 
-  function toCatalog() {
-    const url = '/catalog?search=' + searchValue
-
-    setSearchValue('')
-    navigate(url)
-  }
-
   const handleClick = () => {
     if (!searchValue?.trim()) {
       setIsHidden((isHidden) => !isHidden)
       return
     }
 
-    toCatalog()
+    const url = '/catalog?search=' + searchValue
+
+    setSearchValue('')
+    navigate(url)
   }
 
   const handleChange = (event) => {

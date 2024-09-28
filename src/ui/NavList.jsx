@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import NavListItem from './NavListItem'
 
-export default function NavList({ className, items }) {
+export default function NavList({ className, items = [] }) {
   return (
     <ul className={className}>
       {items.map((item) => (
