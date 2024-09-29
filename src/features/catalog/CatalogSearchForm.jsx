@@ -19,6 +19,7 @@ export default function CatalogSearchForm() {
         className='form-control'
         placeholder='Поиск'
         name='q'
+        type='search'
         defaultValue={searchParams.get('q') || ''}
       />
     </form>

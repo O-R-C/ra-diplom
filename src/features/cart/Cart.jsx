@@ -1,13 +1,32 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Col from '../../ui/Col'
 import Section from '../../ui/Section'
-import { getCart } from './cartSlice'
+import { fetchCart, getCart } from './cartSlice'
 import CartItem from './CartItem'
 import { formatCurrency } from '../../utility/formatCurrency'
+import OrderForm from './OrderForm'
 
 export default function Cart() {
   const cart = useSelector(getCart)
+  const dispatch = useDispatch()
   console.log('🚀 ~ cart:', cart)
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.target)
+    const order = {
+      owner: {
+        phone: formData.get('phone'),
+        address: formData.get('address'),
+      },
+      items: cart,
+    }
+
+    console.log('🚀 ~ order:', order)
+
+    dispatch(fetchCart(order))
+  }
 
   if (cart.length === 0) {
     return (
@@ -64,61 +83,7 @@ export default function Cart() {
           </tbody>
         </table>
       </Section>
-      <Section
-        className='order'
-        title='Оформить заказ'
-        type='h2'
-      >
-        <div
-          className='card'
-          style={{ maxWidth: '30rem', margin: '0 auto' }}
-        >
-          <form className='card-body'>
-            <div className='form-group'>
-              <label htmlFor='phone'>Телефон</label>
-              <input
-                className='form-control'
-                id='phone'
-                placeholder='Ваш телефон'
-                type='tel'
-                autoComplete='on'
-                required
-              />
-            </div>
-            <div className='form-group'>
-              <label htmlFor='address'>Адрес доставки</label>
-              <input
-                className='form-control'
-                id='address'
-                placeholder='Адрес доставки'
-                type='text'
-                autoComplete='on'
-                required
-              />
-            </div>
-            <div className='form-group form-check'>
-              <input
-                type='checkbox'
-                className='form-check-input'
-                id='agreement'
-                required
-              />
-              <label
-                className='form-check-label'
-                htmlFor='agreement'
-              >
-                Согласен с правилами доставки
-              </label>
-            </div>
-            <button
-              type='submit'
-              className='btn btn-outline-secondary'
-            >
-              Оформить
-            </button>
-          </form>
-        </div>
-      </Section>
+      <OrderForm handleSubmit={handleSubmit} />
     </Col>
   )
 }

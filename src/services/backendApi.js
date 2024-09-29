@@ -43,3 +43,22 @@ export const getProduct = async (id) => {
     throw new Error(error)
   }
 }
+
+export const sendOrder = async (data) => {
+  try {
+    const response = await fetch(import.meta.env.VITE_BACKEND_URL + '/order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
+
+    return response.status
+  } catch (error) {
+    throw new Error(error)
+  }
+}

@@ -20,19 +20,19 @@ const loader = async ({ params }) => {
 export default function Product() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [amount, setAmount] = useState(1)
+  const [count, setCount] = useState(1)
   const [selectedSize, setSelectedSize] = useState('')
 
   const { sku, manufacturer, title, color, material, season, sizes, images, reason, price, id } = useLoaderData()
   const availableSizes = sizes?.filter((size) => size.available)
 
   const handleIncrement = () => {
-    if (amount >= 10) return
-    setAmount((amount) => amount + 1)
+    if (count >= 10) return
+    setCount((count) => count + 1)
   }
   const handleDecrement = () => {
-    if (amount <= 1) return
-    setAmount((amount) => amount - 1)
+    if (count <= 1) return
+    setCount((count) => count - 1)
   }
 
   const handleOrder = () => {
@@ -40,12 +40,11 @@ export default function Product() {
       id,
       sku,
       title,
-      amount,
+      count,
       size: selectedSize,
       price,
-      total: amount * parseInt(price),
+      total: count * parseInt(price),
     }
-    console.log(order)
 
     dispatch(addItem(order))
     navigate('/cart')
@@ -117,7 +116,7 @@ export default function Product() {
                   >
                     -
                   </button>
-                  <span className='btn btn-outline-primary'>{amount < 10 ? `0${amount}` : amount}</span>
+                  <span className='btn btn-outline-primary'>{count < 10 ? `0${count}` : count}</span>
                   <button
                     className='btn btn-secondary'
                     onClick={handleIncrement}
