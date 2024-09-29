@@ -1,15 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux'
 import Col from '../../ui/Col'
 import Section from '../../ui/Section'
-import { fetchCart, getCart } from './cartSlice'
+import { fetchCart } from './cartSlice'
 import CartItem from './CartItem'
 import { formatCurrency } from '../../utility/formatCurrency'
 import OrderForm from './OrderForm'
+import PreLoader from '../../ui/PreLoader'
+import { useNavigate } from 'react-router-dom'
 
 export default function Cart() {
-  const cart = useSelector(getCart)
+  const { cart, error, isLoading } = useSelector((state) => state.cart)
+  const navigate = useNavigate()
   const dispatch = useDispatch()
-  console.log('🚀 ~ cart:', cart)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -23,9 +25,30 @@ export default function Cart() {
       items: cart,
     }
 
-    console.log('🚀 ~ order:', order)
-
     dispatch(fetchCart(order))
+    navigate('/')
+  }
+
+  if (error) {
+    return (
+      <Col>
+        <Section
+          className='cart'
+          title='Корзина'
+          type='h2'
+        >
+          {error}
+        </Section>
+      </Col>
+    )
+  }
+
+  if (isLoading) {
+    return (
+      <Col>
+        <PreLoader />
+      </Col>
+    )
   }
 
   if (cart.length === 0) {

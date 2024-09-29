@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Row from '../../ui/Row'
@@ -12,6 +12,7 @@ import { fetchCatalog, fetchMoreCatalog } from './catalogSlice'
 import CatalogSearchForm from './CatalogSearchForm'
 
 export default function Catalog() {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const location = useLocation()
   const { catalog, isLoading, error, isAll } = useSelector((state) => state.catalog)
@@ -28,7 +29,12 @@ export default function Catalog() {
     dispatch(fetchCatalog({ q, categoryId: queryId }))
   }, [dispatch, queryId, q])
 
-  if (error) return <p>{error}</p>
+  useEffect(() => {
+    if (error) {
+      navigate('/')
+    }
+  }, [error, navigate])
+
   if (isLoading && !catalog.length) return <PreLoader />
   if (!catalog.length && !q) return null
 

@@ -15,6 +15,7 @@ import CatalogPage from './pages/CatalogPage'
 import ProductPage from './pages/ProductPage'
 import CartPage from './pages/CartPage'
 import Product from './features/product/Product'
+import { Toaster } from 'react-hot-toast'
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
+      <Toaster toastOptions={{ duration: 4000 }} />
     </Provider>
   </StrictMode>
 )

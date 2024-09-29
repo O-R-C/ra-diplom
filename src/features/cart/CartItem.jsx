@@ -4,7 +4,7 @@ import { formatCurrency } from '../../utility/formatCurrency'
 import { useDispatch } from 'react-redux'
 import { removeItem } from './cartSlice'
 
-export default function CartItem({ item: { id, title, amount, size, price, total } }) {
+export default function CartItem({ item: { id, title, count, size, price, total } }) {
   const dispatch = useDispatch()
 
   const handleRemove = () => {
@@ -17,7 +17,7 @@ export default function CartItem({ item: { id, title, amount, size, price, total
         <Link to={`/catalog/${id}`}>{title}</Link>
       </td>
       <td>{size}</td>
-      <td>{amount}</td>
+      <td>{count}</td>
       <td>{formatCurrency(price)} руб.</td>
       <td>{formatCurrency(total)} руб.</td>
       <td>

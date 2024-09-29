@@ -5,6 +5,7 @@ import {
   clearCart as clearLocalStorageCart,
 } from '../../utility/localStorageCart'
 import { sendOrder } from '../../services/backendApi'
+import toast from 'react-hot-toast'
 
 const initialState = {
   cart: getLocalStorageCart(),
@@ -30,7 +31,7 @@ const cartSlice = createSlice({
     addItem(state, action) {
       const item = state.cart.find((i) => i.id === action.payload.id && i.size === action.payload.size)
       if (item) {
-        item.amount += action.payload.amount
+        item.count += action.payload.count
       } else {
         state.cart.push(action.payload)
       }
@@ -44,13 +45,15 @@ const cartSlice = createSlice({
         state.isLoading = true
       })
       .addCase(fetchCart.fulfilled, (state) => {
-        state.isLoading = false
+        toast.success('Заказ оформлен')
         state.cart = []
+        state.isLoading = false
         clearLocalStorageCart()
       })
       .addCase(fetchCart.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.error.message
+        toast.error('Не удалось оформить заказ', action.error.message)
+        // state.error = action.error.message
       })
   },
 })

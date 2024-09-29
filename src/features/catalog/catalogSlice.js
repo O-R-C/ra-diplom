@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getItems } from '../../services/backendApi'
+import toast from 'react-hot-toast'
 
 const initialState = {
   catalog: [],
@@ -21,6 +22,8 @@ const catalogSlice = createSlice({
       .addCase(fetchCatalog.pending, (state) => {
         state.isLoading = true
         state.catalog = []
+        state.isAll = false
+        state.error = null
       })
       .addCase(fetchCatalog.fulfilled, (state, action) => {
         state.isLoading = false
@@ -29,12 +32,15 @@ const catalogSlice = createSlice({
       })
       .addCase(fetchCatalog.rejected, (state, action) => {
         state.isLoading = false
+        toast.error('Не удалось загрузить каталог', action.error.message)
         state.error = action.error.message
       })
 
     builder
       .addCase(fetchMoreCatalog.pending, (state) => {
         state.isLoading = true
+        state.isAll = false
+        state.error = null
       })
       .addCase(fetchMoreCatalog.fulfilled, (state, action) => {
         state.isLoading = false

@@ -30,13 +30,15 @@ export default function Card({ item: { images, title, price, id } }) {
         <div className='card-body'>
           <p className='card-text'>{title}</p>
           <p className='card-text'>{price}</p>
-          <Link
-            to={`/catalog/${id}`}
-            className='btn btn-outline-primary'
-            onClick={handleClick}
-          >
-            Заказать
-          </Link>
+          {navigation.state === 'idle' && (
+            <Link
+              to={`/catalog/${id}`}
+              className='btn btn-outline-primary'
+              onClick={handleClick}
+            >
+              Заказать
+            </Link>
+          )}
         </div>
       </div>
     </div>
