@@ -64,27 +64,29 @@ export default function Product() {
               </tr>
             </tbody>
           </table>
-          <div className='text-center'>
-            <p>
-              Размеры в наличии:{' '}
-              {availableSizes.map((size) => (
-                <ProductSize
-                  size={size.size}
-                  key={size.size}
-                  selectedSize={selectedSize}
-                  setSelectedSize={setSelectedSize}
-                />
-              ))}
-            </p>
-            <p>
-              Количество:{' '}
-              <span className='btn-group btn-group-sm pl-2'>
-                <button className='btn btn-secondary'>-</button>
-                <span className='btn btn-outline-primary'>1</span>
-                <button className='btn btn-secondary'>+</button>
-              </span>
-            </p>
-          </div>
+          {availableSizes.length > 0 && (
+            <div className='text-center'>
+              <p>
+                Размеры в наличии:{' '}
+                {availableSizes.map((size) => (
+                  <ProductSize
+                    size={size.size}
+                    key={size.size}
+                    selectedSize={selectedSize}
+                    setSelectedSize={setSelectedSize}
+                  />
+                ))}
+              </p>
+              <p>
+                Количество:{' '}
+                <span className='btn-group btn-group-sm pl-2'>
+                  <button className='btn btn-secondary'>-</button>
+                  <span className='btn btn-outline-primary'>1</span>
+                  <button className='btn btn-secondary'>+</button>
+                </span>
+              </p>
+            </div>
+          )}
           {selectedSize && <button className='btn btn-danger btn-block btn-lg'>В корзину</button>}
         </div>
       </Row>
