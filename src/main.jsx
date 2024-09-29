@@ -11,6 +11,7 @@ import ErrorPage from './pages/ErrorPage'
 import ContactsPage from './pages/ContactsPage'
 import AboutPage from './pages/AboutPage'
 import HomePage from './pages/HomePage'
+import CatalogPage from './pages/CatalogPage'
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
+      },
+      {
+        path: '/catalog',
+        element: <CatalogPage />,
       },
       {
         path: '/about',

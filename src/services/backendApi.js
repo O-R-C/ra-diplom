@@ -18,13 +18,14 @@ export const getCategories = async () => {
   }
 }
 
-export const getItems = async (categoryId, offset) => {
+export const getItems = async (q, categoryId, offset) => {
   try {
     const response = await fetch(
       import.meta.env.VITE_BACKEND_URL +
         '/items' +
         `?offset=${offset}` +
-        (categoryId !== 'all' ? `&categoryId=${categoryId}` : '')
+        (categoryId !== 'all' ? `&categoryId=${categoryId}` : '') +
+        (q ? `&q=${q}` : '')
     )
     const data = await response.json()
     return data

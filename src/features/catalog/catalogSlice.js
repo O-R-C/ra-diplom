@@ -48,15 +48,18 @@ const catalogSlice = createSlice({
   },
 })
 
-export const fetchCatalog = createAsyncThunk('catalog/fetchCatalog', async ({ categoryId = 'all', offset = 0 }) => {
-  const data = await getItems(categoryId, offset)
-  return data
-})
+export const fetchCatalog = createAsyncThunk(
+  'catalog/fetchCatalog',
+  async ({ q = '', categoryId = 'all', offset = 0 }) => {
+    const data = await getItems(q, categoryId, offset)
+    return data
+  }
+)
 
 export const fetchMoreCatalog = createAsyncThunk(
   'catalog/fetchMoreCatalog',
-  async ({ categoryId = 'all', offset = 0 }) => {
-    const data = await getItems(categoryId, offset)
+  async ({ q = '', categoryId = 'all', offset = 0 }) => {
+    const data = await getItems(q, categoryId, offset)
     return data
   }
 )

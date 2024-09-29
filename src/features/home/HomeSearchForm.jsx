@@ -7,12 +7,11 @@ export default function HomeSearchForm() {
   const [searchValue, setSearchValue] = useState('')
 
   const handleClick = () => {
-    if (!searchValue?.trim()) {
-      setIsHidden((isHidden) => !isHidden)
-      return
-    }
+    setIsHidden((isHidden) => !isHidden)
 
-    const url = '/catalog?search=' + searchValue
+    if (searchValue.trim() === '') return
+
+    const url = '/catalog?q=' + searchValue
 
     setSearchValue('')
     navigate(url)

@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 export default function Category({ category: { title, id }, active }) {
+  const [searchParams] = useSearchParams()
+  const q = searchParams.get('q')
+
   return (
     <li className='nav-item'>
       <Link
-        to={`?category=${id}`}
+        to={`?category=${id}${q ? `&q=${q}` : ''}`}
         className={`nav-link ${active ? 'active' : ''}`}
       >
         {title}
