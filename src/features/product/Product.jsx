@@ -1,10 +1,12 @@
-import { useLoaderData } from 'react-router-dom'
+import { useState } from 'react'
+import { useLoaderData, useNavigate } from 'react-router-dom'
 
 import Row from '../../ui/Row'
 import Section from '../../ui/Section'
-import { getProduct } from '../../services/backendApi'
 import ProductSize from './ProductSize'
-import { useState } from 'react'
+import { getProduct } from '../../services/backendApi'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../cart/cartSlice'
 
 const loader = async ({ params }) => {
   try {
@@ -16,9 +18,12 @@ const loader = async ({ params }) => {
 }
 
 export default function Product() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [amount, setAmount] = useState(1)
   const [selectedSize, setSelectedSize] = useState('')
-  const { sku, manufacturer, title, color, material, season, sizes, images, reason } = useLoaderData()
+
+  const { sku, manufacturer, title, color, material, season, sizes, images, reason, price, id } = useLoaderData()
   const availableSizes = sizes?.filter((size) => size.available)
 
   const handleIncrement = () => {
@@ -28,6 +33,22 @@ export default function Product() {
   const handleDecrement = () => {
     if (amount <= 1) return
     setAmount((amount) => amount - 1)
+  }
+
+  const handleOrder = () => {
+    const order = {
+      id,
+      sku,
+      title,
+      amount,
+      size: selectedSize,
+      price,
+      total: amount * parseInt(price),
+    }
+    console.log(order)
+
+    dispatch(addItem(order))
+    navigate('/cart')
   }
 
   return (
@@ -107,7 +128,14 @@ export default function Product() {
               </p>
             </div>
           )}
-          {selectedSize && <button className='btn btn-danger btn-block btn-lg'>В корзину</button>}
+          {selectedSize && (
+            <button
+              className='btn btn-danger btn-block btn-lg'
+              onClick={handleOrder}
+            >
+              В корзину
+            </button>
+          )}
         </div>
       </Row>
     </Section>
