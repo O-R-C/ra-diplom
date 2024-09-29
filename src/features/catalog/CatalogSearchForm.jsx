@@ -5,7 +5,7 @@ export default function CatalogSearchForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const searchValue = event.target[0].value
+    const searchValue = event.target[0].value.toLowerCase()
     const categoryId = searchParams.get('category') || 'all'
     setSearchParams(`?category=${categoryId}` + (searchValue ? `&q=${searchValue}` : ''))
   }
