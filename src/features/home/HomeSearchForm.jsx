@@ -11,7 +11,7 @@ export default function HomeSearchForm() {
 
     if (searchValue.trim() === '') return
 
-    const url = '/catalog?q=' + searchValue
+    const url = '/catalog?q=' + searchValue.toLowerCase()
 
     setSearchValue('')
     navigate(url)
@@ -28,12 +28,12 @@ export default function HomeSearchForm() {
 
   return (
     <>
-      <label
+      <span
         htmlFor='search-expander-input'
         data-id='search-expander'
         className='header-controls-pic header-controls-search'
         onClick={handleClick}
-      ></label>
+      ></span>
 
       {!isHidden && (
         <form
@@ -48,6 +48,7 @@ export default function HomeSearchForm() {
             onChange={handleChange}
             value={searchValue}
             id='search-expander-input'
+            autoFocus
           />
         </form>
       )}

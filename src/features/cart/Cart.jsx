@@ -9,6 +9,20 @@ export default function Cart() {
   const cart = useSelector(getCart)
   console.log('🚀 ~ cart:', cart)
 
+  if (cart.length === 0) {
+    return (
+      <Col>
+        <Section
+          className='cart'
+          title='Корзина'
+          type='h2'
+        >
+          Корзина пустая
+        </Section>
+      </Col>
+    )
+  }
+
   return (
     <Col>
       <Section

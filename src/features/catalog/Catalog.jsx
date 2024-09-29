@@ -34,7 +34,7 @@ export default function Catalog() {
 
   return (
     <Section
-      className='catalog'
+      className={`${catalog.length > 0 ? 'catalog' : ''}`}
       title='Каталог'
       type='h2'
     >
