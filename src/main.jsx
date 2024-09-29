@@ -12,6 +12,8 @@ import ContactsPage from './pages/ContactsPage'
 import AboutPage from './pages/AboutPage'
 import HomePage from './pages/HomePage'
 import CatalogPage from './pages/CatalogPage'
+import ProductPage from './pages/ProductPage'
+import Product from './features/product/Product'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,11 @@ const router = createBrowserRouter([
       {
         path: '/catalog',
         element: <CatalogPage />,
+      },
+      {
+        path: '/catalog/:id',
+        element: <ProductPage />,
+        loader: Product.loader,
       },
       {
         path: '/about',

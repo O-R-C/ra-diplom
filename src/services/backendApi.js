@@ -33,3 +33,13 @@ export const getItems = async (q, categoryId, offset) => {
     throw new Error(error)
   }
 }
+
+export const getProduct = async (id) => {
+  try {
+    const response = await fetch(import.meta.env.VITE_BACKEND_URL + `/items/${id}`)
+    const data = await response.json()
+    return data
+  } catch (error) {
+    throw new Error(error)
+  }
+}
