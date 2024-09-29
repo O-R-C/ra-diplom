@@ -16,9 +16,19 @@ const loader = async ({ params }) => {
 }
 
 export default function Product() {
+  const [amount, setAmount] = useState(1)
   const [selectedSize, setSelectedSize] = useState('')
   const { sku, manufacturer, title, color, material, season, sizes, images, reason } = useLoaderData()
   const availableSizes = sizes?.filter((size) => size.available)
+
+  const handleIncrement = () => {
+    if (amount >= 10) return
+    setAmount((amount) => amount + 1)
+  }
+  const handleDecrement = () => {
+    if (amount <= 1) return
+    setAmount((amount) => amount - 1)
+  }
 
   return (
     <Section
@@ -80,9 +90,19 @@ export default function Product() {
               <p>
                 Количество:{' '}
                 <span className='btn-group btn-group-sm pl-2'>
-                  <button className='btn btn-secondary'>-</button>
-                  <span className='btn btn-outline-primary'>1</span>
-                  <button className='btn btn-secondary'>+</button>
+                  <button
+                    className='btn btn-secondary'
+                    onClick={handleDecrement}
+                  >
+                    -
+                  </button>
+                  <span className='btn btn-outline-primary'>{amount < 10 ? `0${amount}` : amount}</span>
+                  <button
+                    className='btn btn-secondary'
+                    onClick={handleIncrement}
+                  >
+                    +
+                  </button>
                 </span>
               </p>
             </div>
