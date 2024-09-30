@@ -1,4 +1,5 @@
 import Section from '../../ui/Section'
+import footerSprite from '../../images/footer-sprite.png'
 
 export default function FooterColContacts() {
   return (
@@ -20,8 +21,14 @@ export default function FooterColContacts() {
         office@bosanoga.ru
       </a>
       <div className='footer-social-links'>
-        <div className='footer-social-link footer-social-link-twitter'></div>
-        <div className='footer-social-link footer-social-link-vk'></div>
+        <div
+          className='footer-social-link footer-social-link-twitter'
+          style={{ backgroundImage: `url(${footerSprite})` }}
+        ></div>
+        <div
+          className='footer-social-link footer-social-link-vk'
+          style={{ backgroundImage: `url(${footerSprite})` }}
+        ></div>
       </div>
     </Section>
   )

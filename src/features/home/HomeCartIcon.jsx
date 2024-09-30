@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getCart } from '../cart/cartSlice'
+import headerControlsSprite from '../../images/header-controls-sprite.png'
 
 export default function HomeCartIcon({ className }) {
   const navigate = useNavigate()
@@ -14,6 +15,7 @@ export default function HomeCartIcon({ className }) {
   return (
     <div
       className={className}
+      style={{ backgroundImage: `url(${headerControlsSprite})` }}
       onClick={handleClick}
     >
       {cart.length > 0 && <div className='header-controls-cart-full'>{cart.length}</div>}

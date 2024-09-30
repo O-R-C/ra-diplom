@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import headerControlsSprite from '../../images/header-controls-sprite.png'
 
 export default function HomeSearchForm() {
   const navigate = useNavigate()
@@ -32,6 +33,7 @@ export default function HomeSearchForm() {
         htmlFor='search-expander-input'
         data-id='search-expander'
         className='header-controls-pic header-controls-search'
+        style={{ backgroundImage: `url(${headerControlsSprite})` }}
         onClick={handleClick}
       ></span>
 
