@@ -1,11 +1,12 @@
 import Col from '../../ui/Col'
+import banner from '../../images/banner.jpg'
 
 export default function Banner() {
   return (
     <Col>
       <div className='banner'>
         <img
-          src='/img/banner.jpg'
+          src={banner}
           className='img-fluid'
           alt='К весне готовы!'
         />
