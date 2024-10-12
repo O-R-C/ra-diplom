@@ -6,22 +6,14 @@ import Row from '../../ui/Row'
 import Section from '../../ui/Section'
 import PreLoader from '../../ui/PreLoader'
 import { fetchTopSales } from './topSalesSlice'
-import { useNavigate } from 'react-router-dom'
 
 export default function TopSales() {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { topSales, isLoading, error } = useSelector((state) => state.topSales)
+  const { topSales, isLoading } = useSelector((state) => state.topSales)
 
   useEffect(() => {
     dispatch(fetchTopSales())
   }, [dispatch])
-
-  useEffect(() => {
-    if (error) {
-      navigate('/')
-    }
-  }, [error, navigate])
 
   if (isLoading)
     return (
