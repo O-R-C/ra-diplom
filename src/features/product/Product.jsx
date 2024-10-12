@@ -50,7 +50,7 @@ export default function Product() {
     navigate('/cart')
   }
 
-  if (error || !id) {
+  if (error) {
     return <SomethingWentWrong />
   }
 
@@ -60,6 +60,8 @@ export default function Product() {
         <PreLoader />
       </Row>
     )
+
+  if (!id) return null
 
   return (
     <Section
