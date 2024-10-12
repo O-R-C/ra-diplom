@@ -94,7 +94,7 @@ export default function Product() {
               </tr>
             </tbody>
           </table>
-          {availableSizes.length > 0 && (
+          {availableSizes.length > 0 ? (
             <div className='text-center'>
               <p>
                 Размеры в наличии:{' '}
@@ -125,15 +125,17 @@ export default function Product() {
                   </button>
                 </span>
               </p>
+              <button
+                className='btn btn-danger btn-block btn-lg'
+                onClick={handleOrder}
+                disabled={!selectedSize}
+                style={!selectedSize ? { cursor: 'not-allowed', opacity: '0.4' } : { cursor: 'pointer' }}
+              >
+                В корзину
+              </button>
             </div>
-          )}
-          {selectedSize && (
-            <button
-              className='btn btn-danger btn-block btn-lg'
-              onClick={handleOrder}
-            >
-              В корзину
-            </button>
+          ) : (
+            <p className='text-center opacity-50'>Товар не доступен для заказа</p>
           )}
         </div>
       </Row>
