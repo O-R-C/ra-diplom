@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types'
-import { Link, useNavigation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import PreLoader from './PreLoader'
 import { useState } from 'react'
 
 export default function Card({ item: { images, title, price, id } }) {
   const [isSelected, setIsSelected] = useState(false)
-  const navigation = useNavigation()
 
   const handleClick = () => {
     setIsSelected(!isSelected)
@@ -30,15 +29,13 @@ export default function Card({ item: { images, title, price, id } }) {
         <div className='card-body d-flex flex-column'>
           <p className='card-text'>{title}</p>
           <p className='card-text mt-auto'>{price} руб.</p>
-          {navigation.state === 'idle' && (
-            <Link
-              to={`/catalog/${id}`}
-              className='btn btn-outline-primary'
-              onClick={handleClick}
-            >
-              Заказать
-            </Link>
-          )}
+          <Link
+            to={`/catalog/${id}`}
+            className='btn btn-outline-primary'
+            onClick={handleClick}
+          >
+            Заказать
+          </Link>
         </div>
       </div>
     </div>

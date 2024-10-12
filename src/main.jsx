@@ -14,7 +14,6 @@ import HomePage from './pages/HomePage'
 import CatalogPage from './pages/CatalogPage'
 import ProductPage from './pages/ProductPage'
 import CartPage from './pages/CartPage'
-import Product from './features/product/Product'
 import { Toaster } from 'react-hot-toast'
 
 const router = createBrowserRouter([
@@ -31,9 +30,8 @@ const router = createBrowserRouter([
         element: <CatalogPage />,
       },
       {
-        path: '/catalog/:id',
+        path: '/catalog/:productId',
         element: <ProductPage />,
-        loader: Product.loader,
       },
       {
         path: '/about',
