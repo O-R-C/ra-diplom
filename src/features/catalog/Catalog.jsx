@@ -35,7 +35,16 @@ export default function Catalog() {
     }
   }, [error, navigate])
 
-  if (isLoading && !catalog.length) return <PreLoader />
+  if (isLoading && !catalog.length)
+    return (
+      <Section
+        title='Каталог'
+        type='h2'
+      >
+        <PreLoader />
+      </Section>
+    )
+
   if (!catalog.length && !q) return null
 
   return (

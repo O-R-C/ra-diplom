@@ -23,7 +23,15 @@ export default function TopSales() {
     }
   }, [error, navigate])
 
-  if (isLoading) return <PreLoader />
+  if (isLoading)
+    return (
+      <Section
+        title='Хиты продаж!'
+        type='h2'
+      >
+        <PreLoader />
+      </Section>
+    )
 
   if (!topSales.length) return null
 

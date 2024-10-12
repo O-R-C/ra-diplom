@@ -24,7 +24,6 @@ export default function Cart() {
       },
       items: cart,
     }
-    console.log('🚀 ~ order:', order)
 
     dispatch(fetchCart(order))
     navigate('/')
