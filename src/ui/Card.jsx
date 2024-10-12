@@ -27,9 +27,9 @@ export default function Card({ item: { images, title, price, id } }) {
           style={{ height: '250px', objectFit: 'contain' }}
           alt={title}
         />
-        <div className='card-body'>
+        <div className='card-body d-flex flex-column'>
           <p className='card-text'>{title}</p>
-          <p className='card-text'>{price}</p>
+          <p className='card-text mt-auto'>{price}</p>
           {navigation.state === 'idle' && (
             <Link
               to={`/catalog/${id}`}
