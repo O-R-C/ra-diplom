@@ -32,6 +32,7 @@ const cartSlice = createSlice({
       const item = state.cart.find((i) => i.id === action.payload.id && i.size === action.payload.size)
       if (item) {
         item.count += action.payload.count
+        item.total = item.count * item.price
       } else {
         state.cart.push(action.payload)
       }
